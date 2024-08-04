@@ -485,7 +485,7 @@ const names = ['sam', 'jara', 'mikel', 'tailor'];
 //     console.log(names[i]);
 // }
 
-//////////6.In case of 'mikel' log 'mikel is the best.In other case log only value
+//////////6.In case of 'mikel' log 'mikel is the best. In other case log only value
 // for (let i = 0; i <= names.length; i++) {
 //     if (names[i] === 'mikel') {
 //         console.log(`${names[i]} is the best`);
@@ -566,6 +566,57 @@ const h = 130;
 // } else {
 //     console.log(h);
 // }
+
+////////remove duplicate from an array///////////////
+const duplicateArray = [10, 13, 99, 4, 7, 4, 666];
+//solution:-1
+// function removeDuplicate(arr) {
+//     return arr.filter((item, index) => arr.indexOf(item) === index);
+// }
+// console.log(removeDuplicate(duplicateArray));
+
+//solution:-2
+// const removeDuplicate = (array) => {
+//     let uniqueArray = [];
+//     array.forEach(element => {
+//         if (!uniqueArray.includes(element)) {
+//             uniqueArray.push(element)
+//         }
+//     })
+//     return uniqueArray
+// }
+// console.log(removeDuplicate(duplicateArray));
+
+//solution:-3
+// const removeDuplicate = (array) => {
+//     let uniqueArray = [];
+//     array.map(element => {
+//         if (!uniqueArray.includes(element)) {
+//             uniqueArray.push(element)
+//         }
+//     })
+//     return uniqueArray
+// }
+// console.log(removeDuplicate(duplicateArray));
+
+//solution:-4
+// const removeDuplicate = arr => {
+//     return [...new Set(arr)]
+// }
+// console.log(removeDuplicate(duplicateArray));
+
+//solution:-5
+// const removeDuplicates = (arr) => {
+//     let unique = [];
+//     for (i = 0; i < duplicateArray.length; i++) {
+//         if (unique.indexOf(duplicateArray[i]) === -1) {
+//             unique.push(duplicateArray[i]);
+//         }
+//     }
+//     return unique;
+// }
+// console.log(removeDuplicates(duplicateArray));
+
 
 ////////////////////// for of loop............................
 const tools = ['book', 'pen', 'khata', 'pencil'];
@@ -805,9 +856,51 @@ const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentV
 const averageAge = person.reduce((acc, singlePerson) => (acc + singlePerson.age / person.length), 0)
 // console.log(averageAge)=27.2
 
-//remove duplicate from an array
-const arrayy = [10, 13, 9, 4, 7, 4, 6];
-function removeDuplicate(arr) {
-    return arr.filter((item, index) => arr.indexOf(item) === index);
-}
-// console.log(removeDuplicate(arrayy));
+
+
+//.............................DOM.......................
+//document.getElementById                  
+
+const h1 = document.getElementById('app-title')
+// console.log(h1)=<h1 id="app-title" class="title">Shopping Cart</h1>
+// console.log(h1.id)=app-title
+// console.log(h1.className)=title;
+// console.log(h1.getAttribute('id'))=app-title
+// console.log(h1.getAttribute('class'))=title;
+// h1.title = 'Shopping-list'  //h1 a mouse rakhle Shopping-list title hisebe dekhabe
+
+
+//setAttribute......
+// h1.setAttribute('id', 'new-id')   //h1 a mouse rakhle Shopping-list title hisebe dekhabe
+// h1.setAttribute('class', 'new-class') //   ||
+// h1.setAttribute('title', 'Shopping-List') //   ||
+
+//get content......
+// console.log(h1.textContent) = Shopping - Cart;
+
+//change content......
+// h1.textContent = 'Shopping-list';
+// h1.innerText = 'Shopping-bag';
+// h1.innerHTML = '<strong>Shopping Bag</strong>'
+
+//change style.......
+// h1.style.color = 'red';
+// h1.style.backgroundColor = 'black';
+// h1.style.padding = '10px';
+// h1.style.borderRadius = '10px'
+
+//document.querySelector                  
+const title = document.querySelector('h1')
+// console.log(title) = <h1 id="app-title" class="title">Shopping Cart</h1>
+// console.log(document.querySelector('#app-title')) = <h1 id="app-title" class="title">Shopping Cart</h1>
+// console.log(document.querySelector('.title'))=<h1 id="app-title" class="title">Shopping Cart</h1>
+// console.log(document.querySelector('input[type="text"]')); //select only first input
+// console.log(document.querySelector('li:nth-child(2)').innerText)=apple
+// console.log(document.querySelector('li:nth-child(1)').innerText) = orange;
+// console.log(document.querySelector('li:nth-child(3)').innerText)=banana;
+// document.querySelector('li:nth-child(2)').innerText = 'graps'
+document.querySelector('ul').querySelector('li').style.color = 'blue';
+//or
+document.querySelector('ul li:nth-child(1)').style.color = 'red'
+document.querySelector('ul li:nth-child(1)').style.backgroundColor = 'red'
+
