@@ -899,8 +899,37 @@ const title = document.querySelector('h1')
 // console.log(document.querySelector('li:nth-child(1)').innerText) = orange;
 // console.log(document.querySelector('li:nth-child(3)').innerText)=banana;
 // document.querySelector('li:nth-child(2)').innerText = 'graps'
-document.querySelector('ul').querySelector('li').style.color = 'blue';
-//or
-document.querySelector('ul li:nth-child(1)').style.color = 'red'
-document.querySelector('ul li:nth-child(1)').style.backgroundColor = 'red'
+// document.querySelector('ul').querySelector('li').style.color = 'blue';
+// //or
+// document.querySelector('ul li:nth-child(1)').style.color = 'red'
+// document.querySelector('ul li:nth-child(1)').style.backgroundColor = 'red'
 
+
+//querySelectorAll().................
+const AllItems = document.querySelectorAll('.items');
+// console.log(AllItems)=NodeList(3) [li.items, li.items, li.items]
+
+const AllItem2 = document.getElementsByClassName('items');
+// console.log(AllItem2)=HTMLCollection(3) [li.items, li.items, li.items]
+
+// const kk = 10;
+// function add() {
+//     console.log(kk);
+// }
+// console.log(add());
+
+const parent = document.querySelector('.parent');
+// console.log(parent.children)=HTMLCollection(3) [div.child, div.child, div.child]
+// console.log(parent.children[1].innerText)=child-2
+// console.log(parent.children[1].className)=child
+// console.log(parent.children[1].nodeName)=DIV
+
+// console.log(parent.firstElementChild.innerText)=child-1
+// console.log(parent.lastElementChild.innerText)=child-3
+// const child = document.querySelector('.child')
+// child.parentElement.style.padding = '10px'
+// child.parentElement.style.border = '2px solid red'
+
+const secondChild = document.querySelector('.child:nth-child(2)');
+// console.log(secondChild.nextElementSibling.innerText)=child-3
+// console.log(secondChild.previousElementSibling.innerText)=child-1

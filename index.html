@@ -6,6 +6,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+   <script src="https://kit.fontawesome.com/542efec3c5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -23,21 +24,31 @@
       </div>
       <div id="list">
          <ul style="list-style-type: none; padding-left: 0;">
-            <li
-               style="padding: 4px; margin-top: 10px; border:1px solid black; display: flex; justify-content: space-between;;">
-               <span>orange</span>❌
+            <li class="items"
+               style="padding: 4px; margin-top: 10px; border:1px solid black; display: flex; justify-content: space-between">
+               orange
+               <i class="fa-solid fa-trash" style="color:red"></i>
             </li>
-            <li
+            <li class="items"
                style="padding: 4px; margin-top: 10px; border:1px solid black; display: flex; justify-content: space-between;;">
-               <span>apple</span><span>❌</span>
+               apple
+               <i class="fa-solid fa-trash" style="color:red"></i>
             </li>
-            <li
+            <li class="items"
                style="padding: 4px; margin-top: 10px; border:1px solid black; display: flex; justify-content: space-between;;">
-               <span>banana</span><span>❌</span>
+               banana
+               <i class="fa-solid fa-trash" style="color:red"></i>
             </li>
          </ul>
       </div>
+      <h3>Traversing the DOM</h3>
+      <div class="parent">
+         <div class="child">child-1</div>
+         <div class="child">child-2</div>
+         <div class="child">child-3</div>
+      </div>
    </div>
+
 
 
    <script src="index.js"></script>
