@@ -933,3 +933,129 @@ const parent = document.querySelector('.parent');
 const secondChild = document.querySelector('.child:nth-child(2)');
 // console.log(secondChild.nextElementSibling.innerText)=child-3
 // console.log(secondChild.previousElementSibling.innerText)=child-1
+
+function createItem(item) {
+    const ul = document.querySelector('.item');
+    const li = document.createElement('li');
+    li.innerText = `${item}`;
+    li.className = 'items';
+    li.setAttribute('style', 'padding: 4px; margin-top: 10px; border:1px solid black; display: flex; justify-content: space-between')
+    const icon = document.createElement('i');
+    icon.className = "fa-solid fa-trash";
+    icon.setAttribute('style', 'color:red');
+    li.appendChild(icon);
+    ul.appendChild(li)
+}
+
+createItem('mango')
+//this function is creating this li
+{/* <li class="items"
+    style="padding: 4px; margin-top: 10px; border:1px solid black; display: flex; justify-content: space-between;;">
+       banana
+    <i class="fa-solid fa-trash" style="color:red"></i>
+</li> */} //
+
+// change background by clicking..................
+// function changeBg() {
+//     const parent = document.querySelector('.parent');
+//     parent.classList.add('dark')
+// }
+// document.querySelector('.run').onclick = changeBg;
+
+// // toggle background by clicking...................
+// function toggleBg() {
+//     const parent = document.querySelector('.parent');
+//     parent.style.padding = '10px'
+//     parent.classList.toggle('dark')
+// }
+// document.querySelector('.run').onclick = toggleBg;
+// // .............OR.............
+// document.querySelector('.run').onclick = function toggleBg() {
+//     const parent = document.querySelector('.parent');
+//     parent.style.padding = '10px'
+//     parent.classList.toggle('dark')
+// }
+
+// // .........addEventListener()..............
+// document.querySelector('.run').addEventListener('click', function () {
+//     const parent = document.querySelector('.parent');
+//     parent.style.padding = '10px'
+//     parent.classList.toggle('dark')
+// })
+// // .......OR..........
+// document.querySelector('.run').addEventListener('click', () => {
+//     const parent = document.querySelector('.parent');
+//     parent.style.padding = '10px'
+//     parent.classList.toggle('dark')
+// })
+
+// // clear all li from ul by clicking................
+// function clearItems() {
+//     const ul = document.querySelector('.item');
+//     const li = document.querySelectorAll('.items');
+//     //way-1
+//     // ul.innerHTML = ''
+
+//     //way-2
+//     li.forEach(item => item.remove())
+// }
+// document.querySelector('.clear').addEventListener('click', clearItems)
+
+// // ................mouse events...............
+// const onClick = () => console.log('onclick event');
+// const onDoubleClick = () => {
+//     if (document.body.style.backgroundColor !== 'purple') {
+//         document.body.style.backgroundColor = 'purple';
+//         document.body.style.color = 'white';
+//     } else {
+//         document.body.style.backgroundColor = 'white';
+//         document.body.style.color = 'black';
+//     }
+// }
+// const onMouseDown = () => console.log('mouse down')
+// const onMouseUp = () => console.log('mouse up')
+// const onMouseWheel = () => console.log('mouse wheel')
+// const onMouseOver = () => console.log('mouse over')
+// const onMouseOut = () => console.log('mouse out')
+
+// document.querySelector('.click-me').addEventListener('click', onClick)
+// document.querySelector('.click-me').addEventListener('dblclick', onDoubleClick)
+// document.querySelector('.click-me').addEventListener('mousedown', onMouseDown)
+// document.querySelector('.click-me').addEventListener('mouseup', onMouseUp)
+// document.querySelector('.click-me').addEventListener('wheel', onMouseWheel)
+// document.querySelector('.click-me').addEventListener('mouseover', onMouseOver)
+// document.querySelector('.click-me').addEventListener('mouseout', onMouseOut)
+
+
+//....................input events.....................
+const itemInput = document.querySelector('#item-input')
+const priorityInput = document.querySelector('#priority-input')
+const checkboxInput = document.querySelector('#checkbox')
+const appTitle = document.querySelector('#app-title')
+
+const input = (e) => {
+    appTitle.innerText = e.target.value
+}
+const onFocus = e => {
+    console.log('Input is Focused');
+    itemInput.style.outlineStyle = 'solid'
+    itemInput.style.outlineWidth = '1px'
+    itemInput.style.outlineColor = 'green'
+}
+const onBlur = e => {
+    console.log('Input is NOT Focused');
+    itemInput.style.outlineStyle = 'none'
+}
+const checkbox = (e) => {
+    const isChecked = e.target.checked;
+    appTitle.innerText = isChecked ? "Checked" : "Not checked"
+}
+itemInput.addEventListener('input', input)
+//....OR....
+itemInput.addEventListener('change', input)
+
+itemInput.addEventListener('focus', onFocus)
+itemInput.addEventListener('blur', onBlur)
+
+priorityInput.addEventListener('input', input)
+checkboxInput.addEventListener('input', checkbox)
