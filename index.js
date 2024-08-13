@@ -1133,17 +1133,17 @@ formInput.addEventListener('submit', addItem)
 const li = document.querySelectorAll('li');
 const ul = document.querySelector('ul')
 const deleteIcon = document.querySelectorAll('i')
-// li.forEach(item => {
-//     item.addEventListener('click', (e) => {
-//         e.target.remove()
-//     })
-// })
+li.forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.target.remove()
+    })
+})
 // .......OR......
-// ul.addEventListener('click', (e) => {
-//     // if (e.target.tagName === 'LI') {
-//     //     e.target.remove()
-//     // }
-// })
+ul.addEventListener('click', (e) => {
+    if (e.target.tagName === 'LI') {
+        e.target.remove()
+    }
+})
 
 ulList.addEventListener('click', function removeItem(e) {
     console.log(e.target.parentElement.classList);
