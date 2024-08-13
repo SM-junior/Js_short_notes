@@ -11,52 +11,41 @@
 </head>
 
 <body>
-   <div style="text-align:left; width:300px">
+   <div style="text-align:left; width:300px; margin: auto; background:#f1f2f6; padding: 20px;">
       <div style="display: flex; align-items: center;">
          <span style="font-size: 40px; margin-right: 10px">📝</span>
          <h1 id="app-title" class="title">Shopping-Cart</h1>
       </div>
-      <!-- enter item -->
-      <div id="add-item">
-         <input type="text" name="item" id="item-input" placeholder="Enter Item">
-      </div>
-      <!-- select priority -->
-      <div style="margin-top: 10px;">
-         <select name="priority" id="priority-input">
-            <option value="0">select priority</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-         </select>
-      </div>
-      <!-- checkbox input -->
-      <div style="margin-top: 10px;">
-         <input type="checkbox" name="checkout" id="checkbox">Recurring item
-      </div>
-      <button style="margin:10px 10px 10px 0px">+Add Item</button>
-      <!-- filter input -->
+      <form id="form">
+         <!-- enter item -->
+         <div id="add-item">
+            <input type="text" name="item" id="item-input" placeholder="Enter Item">
+         </div>
+         <!-- select priority -->
+         <div style="margin-top: 10px;">
+            <select name="priority" id="priority-input">
+               <option value="0">select priority</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+            </select>
+         </div>
+         <!-- checkbox input -->
+         <div style="margin-top: 10px;">
+            <input type="checkbox" name="checkout" id="checkbox">Recurring item
+         </div>
+         <div>
+            <button id="button" type="submit" value="+ Add Item" style="margin:10px 10px 10px 0px">+ Add Item</button>
+         </div>
+         <!-- <button id="button" type="submit" value="+ Add Item" style="margin:10px 10px 10px 0px">+ Add Item</button> -->
+         <!-- filter input -->
+      </form>
       <div id="filter-item">
          <input type="text" name="filter" id="filter" placeholder="Filter Items">
       </div>
       <!-- item list -->
       <div id="list">
-         <ul class="item" style="list-style-type: none; padding-left: 0;">
-            <li class="items"
-               style="padding: 4px; margin-top: 10px; border:1px solid black; display: flex; justify-content: space-between">
-               orange
-               <i class="fa-solid fa-trash" style="color:red"></i>
-            </li>
-            <li class="items"
-               style="padding: 4px; margin-top: 10px; border:1px solid black; display: flex; justify-content: space-between;;">
-               apple
-               <i class="fa-solid fa-trash" style="color:red"></i>
-            </li>
-            <li class="items"
-               style="padding: 4px; margin-top: 10px; border:1px solid black; display: flex; justify-content: space-between;;">
-               banana
-               <i class="fa-solid fa-trash" style="color:red"></i>
-            </li>
-         </ul>
+         <ul class="item" style="list-style-type: none; padding-left: 0;"></ul>
          <div style="text-align: center">
             <button class="clear">Clear All</button>
          </div>

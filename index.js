@@ -947,7 +947,7 @@ function createItem(item) {
     ul.appendChild(li)
 }
 
-createItem('mango')
+// createItem('mango')
 //this function is creating this li
 {/* <li class="items"
     style="padding: 4px; margin-top: 10px; border:1px solid black; display: flex; justify-content: space-between;;">
@@ -1028,34 +1028,159 @@ createItem('mango')
 
 
 //....................input events.....................
+// const itemInput = document.querySelector('#item-input')
+// const priorityInput = document.querySelector('#priority-input')
+// const checkboxInput = document.querySelector('#checkbox')
+// const appTitle = document.querySelector('#app-title')
+
+// const input = (e) => {
+//     appTitle.innerText = e.target.value
+// }
+// const onFocus = e => {
+//     console.log('Input is Focused');
+//     itemInput.style.outlineStyle = 'solid'
+//     itemInput.style.outlineWidth = '1px'
+//     itemInput.style.outlineColor = 'green'
+// }
+// const onBlur = e => {
+//     console.log('Input is NOT Focused');
+//     itemInput.style.outlineStyle = 'none'
+// }
+// const checkbox = (e) => {
+//     const isChecked = e.target.checked;
+//     appTitle.innerText = isChecked ? "Checked" : "Not checked"
+// }
+// itemInput.addEventListener('input', input)
+// //....OR....
+// itemInput.addEventListener('change', input)
+
+// itemInput.addEventListener('focus', onFocus)
+// itemInput.addEventListener('blur', onBlur)
+
+// priorityInput.addEventListener('input', input)
+// checkboxInput.addEventListener('input', checkbox)
+
+//.....................form submission...................
+// const form = document.querySelector("#form");
+// const formSubmit = e => {
+//     e.preventDefault()
+//     const itemInput = document.querySelector('#item-input').value
+//     const priorityInput = document.querySelector('#priority-input').value
+//     const checkboxInput = document.querySelector('#checkbox').checked
+//     //.............OR.............
+//     // const itemInput = e.target.item.value
+//     // const priorityInput = e.target.priority.value
+//     // const checkboxInput = e.target.checkout.checked
+//     console.log(itemInput, priorityInput, checkboxInput);
+// }
+// form.addEventListener('submit', formSubmit)
+
+//....................event bubbling......................
+// const button = document.querySelector('form button');
+// const div = document.querySelector('form div:nth-child(4)')
+// const form = document.querySelector('form')
+// const body = document.querySelector('body')
+// button.addEventListener('click', (e) => {
+//     alert('button is clicked');
+//     e.stopPropagation()  //this is breaking the event bubbling
+// })
+// div.addEventListener('click', () => {
+//     alert('div is clicked');
+// })
+// form.addEventListener('click', () => {
+//     alert('form is clicked');
+// })
+// body.addEventListener('click', () => {
+//     alert('body is clicked');
+// })
+
+//...................add single li in ul..................
 const itemInput = document.querySelector('#item-input')
-const priorityInput = document.querySelector('#priority-input')
-const checkboxInput = document.querySelector('#checkbox')
-const appTitle = document.querySelector('#app-title')
+const formInput = document.querySelector('#form')
+const ulList = document.querySelector('.item')
 
-const input = (e) => {
-    appTitle.innerText = e.target.value
-}
-const onFocus = e => {
-    console.log('Input is Focused');
-    itemInput.style.outlineStyle = 'solid'
-    itemInput.style.outlineWidth = '1px'
-    itemInput.style.outlineColor = 'green'
-}
-const onBlur = e => {
-    console.log('Input is NOT Focused');
-    itemInput.style.outlineStyle = 'none'
-}
-const checkbox = (e) => {
-    const isChecked = e.target.checked;
-    appTitle.innerText = isChecked ? "Checked" : "Not checked"
-}
-itemInput.addEventListener('input', input)
-//....OR....
-itemInput.addEventListener('change', input)
+const addItem = e => {
+    e.preventDefault();
+    const newItem = itemInput.value;
+    if (newItem == '') {
+        alert('Please add an item')
+        return
+    }
 
-itemInput.addEventListener('focus', onFocus)
-itemInput.addEventListener('blur', onBlur)
+    const li = document.createElement('li');
+    li.innerText = newItem;
+    li.classList.add('remove')
+    li.style.padding = '4px'
+    li.style.marginTop = '10px'
+    li.style.border = '1px solid black'
+    li.style.display = 'flex'
+    li.style.justifyContent = 'space-between'
 
-priorityInput.addEventListener('input', input)
-checkboxInput.addEventListener('input', checkbox)
+    const icon = document.createElement('i');
+    icon.className = "fa-solid fa-trash";
+    icon.style.color = 'red'
+    li.appendChild(icon)
+
+    ulList.appendChild(li)
+    checkUI()
+    itemInput.value = ''
+}
+
+formInput.addEventListener('submit', addItem)
+
+
+//..................delete single li....................
+const li = document.querySelectorAll('li');
+const ul = document.querySelector('ul')
+const deleteIcon = document.querySelectorAll('i')
+// li.forEach(item => {
+//     item.addEventListener('click', (e) => {
+//         e.target.remove()
+//     })
+// })
+// .......OR......
+// ul.addEventListener('click', (e) => {
+//     // if (e.target.tagName === 'LI') {
+//     //     e.target.remove()
+//     // }
+// })
+
+ulList.addEventListener('click', function removeItem(e) {
+    console.log(e.target.parentElement.classList);
+    if (e.target.parentElement.classList.contains('remove')) {
+        if (confirm('Are you sure?')) {
+            e.target.parentElement.remove();
+            checkUI()
+        }
+    }
+})
+
+//...................clear all items...................
+const clearBtn = document.querySelector('.clear');
+
+const clearItems = e => {
+    // ulList.innerHTML = ''
+    //...OR.....
+    while (ulList.firstChild) {
+        ulList.removeChild(ulList.firstChild)
+        checkUI()
+    }
+}
+
+clearBtn.addEventListener('click', clearItems)
+
+//..........hide filter and clear All button if there is no li.....
+function checkUI() {
+    const itemList = ulList.querySelectorAll('li');
+    const filterItem = document.querySelector('#filter-item');
+    const clearBtn = document.querySelector('.clear');
+    if (itemList.length === 0) {
+        filterItem.style.display = 'none'
+        clearBtn.style.display = 'none'
+    } else {
+        filterItem.style.display = 'block'
+        clearBtn.style.display = 'block'
+    }
+}
+
+checkUI()
