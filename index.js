@@ -1094,14 +1094,14 @@ function createItem(item) {
 //     alert('body is clicked');
 // })
 
-//...................add single li in ul..................
+// ...................add single li in ul..................
 const itemInput = document.querySelector('#item-input')
 const formInput = document.querySelector('#form')
 const ulList = document.querySelector('.item')
-
 const addItem = e => {
     e.preventDefault();
     const newItem = itemInput.value;
+    console.log(newItem);
     if (newItem == '') {
         alert('Please add an item')
         return
@@ -1122,14 +1122,31 @@ const addItem = e => {
     li.appendChild(icon)
 
     ulList.appendChild(li)
+
+    //adding item to local storage
+    addItemToLocalStorage(newItem)
+
     checkUI()
     itemInput.value = ''
 }
-
 formInput.addEventListener('submit', addItem)
 
+//...........add item to local storage...........
+function addItemToLocalStorage(item) {
+    let itemFromLocalStorage;
+    if (localStorage.getItem('items') === null) {
+        itemFromLocalStorage = []
+    } else {
+        itemFromLocalStorage = JSON.parse(localStorage.getItem('items'))
+    }
+    itemFromLocalStorage.push(item);
 
-//..................delete single li....................
+    localStorage.setItem('items', JSON.stringify(itemFromLocalStorage))
+
+}
+
+
+// //..................delete single li....................
 const li = document.querySelectorAll('li');
 const ul = document.querySelector('ul')
 const deleteIcon = document.querySelectorAll('i')
@@ -1146,7 +1163,6 @@ ul.addEventListener('click', (e) => {
 })
 
 ulList.addEventListener('click', function removeItem(e) {
-    console.log(e.target.parentElement.classList);
     if (e.target.parentElement.classList.contains('remove')) {
         if (confirm('Are you sure?')) {
             e.target.parentElement.remove();
@@ -1155,9 +1171,8 @@ ulList.addEventListener('click', function removeItem(e) {
     }
 })
 
-//...................clear all items...................
+// //...................clear all items...................
 const clearBtn = document.querySelector('.clear');
-
 const clearItems = e => {
     // ulList.innerHTML = ''
     //...OR.....
@@ -1166,10 +1181,9 @@ const clearItems = e => {
         checkUI()
     }
 }
-
 clearBtn.addEventListener('click', clearItems)
 
-//..........hide filter and clear All button if there is no li.....
+// //..........hide filter and clear All button if there is no li.....
 function checkUI() {
     const itemList = ulList.querySelectorAll('li');
     const filterItem = document.querySelector('#filter-item');
@@ -1182,5 +1196,78 @@ function checkUI() {
         clearBtn.style.display = 'block'
     }
 }
+checkUI();
 
-checkUI()
+//..................filter items.................
+const filter = document.querySelector('#filter')
+
+function filterITem(e) {
+    const listItems = ulList.querySelectorAll('li');
+    const filterText = e.target.value.toLowerCase();
+
+    listItems.forEach(item => {
+        const foundItem = item.innerText.toLowerCase()
+        if (foundItem.indexOf(filterText) != -1) {
+            item.style.display = 'flex'
+        } else {
+            item.style.display = 'none'
+        }
+    })
+}
+
+
+filter.addEventListener('input', filterITem)
+
+//...........promise...............
+// const isMeeting = false;
+// const meeting = new Promise((resolve, reject) => {
+//     const data = {
+//         name: 'zoom meeting',
+//         time: '10am',
+//         location: 'home'
+//     }
+//     if (!isMeeting) {
+//         resolve(data)
+//     } else {
+//         reject(new Error('internet problem'))
+//     }
+// })
+
+// meeting
+//     .then(res => {
+//         console.log(`meeting name: ${res.name}
+//         time:${res.time}
+//         location:${res.home}
+//         `);
+//     })
+//     .catch(err => console.log(err.message))
+
+
+function toggle(e) {
+    e.target.classList.toggle('danger')
+}
+
+document.querySelector('.click-me').addEventListener('click', toggle)
+
+
+//..................callback....................
+const posts = [
+    { name: 'Shahin', email: 's@gmail.com' },
+    { name: 'Karim', email: 'k@gmail.com' },
+]
+
+function createPost(post, callback) {
+    posts.push(post)
+    console.log(`posts:`, posts);
+    callback()
+}
+
+function getPost() {
+    posts.forEach((post) => {
+        const div = document.createElement('div');
+        div.innerHTML = `<strong>${post.name}</strong> : ${post.email}`
+        document.querySelector('#main').appendChild(div)
+    })
+}
+
+createPost({ name: 'Robin', email: 'a@gmail.com' }, getPost)

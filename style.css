@@ -2,3 +2,11 @@
     background: #333;
     color: white;
 }
+
+.danger{
+    background-color: red;
+    color:white;
+    border:1px solid black;
+    border-radius: 5px;
+
+}
